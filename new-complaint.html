@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Submit a new civic complaint to the Citizen Voice repository. Transparent tracking of local complaints.">
+  <title>File a Complaint | Citizen Voice Repository</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <a href="index.html" class="logo-section" id="nav-logo">
+        <div class="logo-icon">CV</div>
+        <div class="logo-text">
+          <h1>CitizenVoice</h1>
+          <p>Official Complaint Repository</p>
+        </div>
+      </a>
+      <a href="index.html" class="btn btn-secondary" id="btn-goto-dashboard">
+        ← Back to Dashboard
+      </a>
+    </header>
+
+    <!-- Form Main Content -->
+    <main>
+      <div class="glass-card form-container">
+        <div class="form-title-section">
+          <h2>File a New Complaint</h2>
+          <p>Provide accurate details to ensure prompt review and resolution of your grievance.</p>
+        </div>
+
+        <!-- Gemini API Key Settings Panel -->
+        <div class="api-config-panel">
+          <button type="button" class="api-toggle-btn" id="api-toggle-btn" aria-expanded="false">
+            <span>⚙️ Gemini API Settings</span>
+            <span class="chevron">▼</span>
+          </button>
+          <div class="api-content collapsed" id="api-content">
+            <p class="api-description">We use Gemini AI to generate a specific clarification question based on your complaint. Paste your API key here (stored locally in your browser).</p>
+            <div class="api-input-group">
+              <input type="password" id="gemini-key-input" class="form-input" placeholder="Enter Gemini API Key...">
+              <button type="button" class="btn btn-secondary" id="save-key-btn">Save Key</button>
+            </div>
+            <span class="api-status" id="api-key-status">❌ No API Key Stored</span>
+          </div>
+        </div>
+
+        <form id="complaint-form" novalidate>
+          <div class="form-row">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" placeholder="e.g. Aarav Sharma" required>
+            </div>
+            
+            <!-- City -->
+            <div class="form-group">
+              <label for="city" class="form-label">City</label>
+              <input type="text" id="city" class="form-input" placeholder="e.g. Mumbai" required>
+            </div>
+          </div>
+
+          <!-- Mobile Number -->
+          <div class="form-group">
+            <label for="mobile" class="form-label">Mobile Number</label>
+            <input type="tel" id="mobile" class="form-input" placeholder="10-digit number (e.g. 9876543210)" required>
+          </div>
+
+          <!-- Full Address -->
+          <div class="form-group">
+            <label for="address" class="form-label">Full Address</label>
+            <textarea id="address" class="form-textarea" rows="3" placeholder="Enter your full residential address..." required></textarea>
+          </div>
+
+          <!-- Complaint Details -->
+          <div class="form-group">
+            <label for="complaint" class="form-label">Complaint Details</label>
+            <textarea id="complaint" class="form-textarea" rows="5" placeholder="Provide a descriptive summary of the problem..." required></textarea>
+          </div>
+
+          <!-- Loading Spinner for Gemini Question Generation -->
+          <div class="ai-loader-container hidden" id="ai-loader-container">
+            <div class="spinner"></div>
+            <p>Gemini is generating a follow-up question based on your complaint...</p>
+          </div>
+
+          <!-- AI Follow-up Question Container -->
+          <div class="ai-question-section hidden" id="ai-question-section">
+            <div class="ai-question-header">
+              <span class="ai-badge">🤖 AI Follow-up Question</span>
+              <p class="ai-question-prompt" id="ai-question-text">Loading question...</p>
+            </div>
+            <div class="form-group">
+              <label for="ai-answer" class="form-label">Your Answer</label>
+              <textarea id="ai-answer" class="form-textarea" rows="3" placeholder="Provide additional details to clarify your complaint..." required></textarea>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="form-actions">
+            <button type="reset" class="btn btn-secondary" id="clear-form-btn">Clear Form</button>
+            <button type="button" class="btn btn-secondary hidden" id="edit-details-btn">Edit Details</button>
+            <button type="button" class="btn btn-primary" id="generate-question-btn">Generate Follow-up Question</button>
+            <button type="submit" class="btn btn-primary hidden" id="submit-complaint-btn">Submit Complaint</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

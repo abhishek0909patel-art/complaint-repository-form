@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage and report city issues through the modern, transparent Citizen Voice Complaint Repository dashboard.">
+  <title>Dashboard | Citizen Voice Repository</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <a href="index.html" class="logo-section" id="nav-logo">
+        <div class="logo-icon">CV</div>
+        <div class="logo-text">
+          <h1>CitizenVoice</h1>
+          <p>Official Complaint Repository</p>
+        </div>
+      </a>
+      <a href="new-complaint.html" class="btn btn-primary" id="btn-goto-form">
+        <span>+</span> File a Complaint
+      </a>
+    </header>
+
+    <!-- Metrics/Stats Section -->
+    <section class="stats-grid" aria-label="Complaint Metrics">
+      <div class="glass-card stat-card">
+        <div class="stat-icon blue">📋</div>
+        <div class="stat-details">
+          <h3 id="stat-total">0</h3>
+          <p>Total Registered</p>
+        </div>
+      </div>
+      
+      <div class="glass-card stat-card">
+        <div class="stat-icon orange">🕒</div>
+        <div class="stat-details">
+          <h3 id="stat-pending">0</h3>
+          <p>Pending Action</p>
+        </div>
+      </div>
+      
+      <div class="glass-card stat-card">
+        <div class="stat-icon green">✓</div>
+        <div class="stat-details">
+          <h3 id="stat-resolved">0</h3>
+          <p>Resolved Cases</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls (Search & Filter) Section -->
+    <section class="control-bar" aria-label="Controls and filters">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-complaint" class="search-input" placeholder="Search by name, city, ID, or keywords..." aria-label="Search complaints">
+      </div>
+      <div class="filters-wrapper">
+        <select id="city-filter" class="filter-select" aria-label="Filter by City">
+          <option value="">All Cities</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Complaints Grid Section -->
+    <main>
+      <div id="complaints-list" class="complaints-grid">
+        <!-- Rendered dynamically by app.js -->
+        <div class="empty-state glass-card">
+          <p>Loading complaints...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
